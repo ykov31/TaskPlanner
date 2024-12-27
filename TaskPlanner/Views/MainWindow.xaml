@@ -1,0 +1,25 @@
+﻿<Window x:Class="TaskPlanner.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:TaskPlanner.ViewModels"
+        Title="Task Planner" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
+
+    <Grid>
+        <DataGrid ItemsSource="{Binding Tasks}" SelectedItem="{Binding SelectedTask}" AutoGenerateColumns="False" Margin="10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Binding="{Binding Title}" />
+                <DataGridTextColumn Header="Описание" Binding="{Binding Description}" />
+                <DataGridTextColumn Header="Приоритет" Binding="{Binding Priority}" />
+                <DataGridTextColumn Header="Срок" Binding="{Binding DueDate, StringFormat=\{0:yyyy-MM-dd\}}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10">
+            <Button Content="Добавить" Command="{Binding AddTaskCommand}" Margin="5" />
+            <Button Content="Редактировать" Command="{Binding EditTaskCommand}" Margin="5" />
+            <Button Content="Удалить" Command="{Binding DeleteTaskCommand}" Margin="5" />
+        </StackPanel>
+    </Grid>
+</Window>
